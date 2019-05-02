@@ -1,7 +1,1 @@
-All the R files directly under this folder are the code for generating the table 4 to table 6.
-
-The CSV files are the output from the R code.
-
-The maketables.R is using the CSV files to make the values for the tables.
-
-The other three folders are other tables.
+It contains the sample CVS file, R and SAS code for generating the table 1.
