@@ -1,0 +1,20 @@
+proc import datafile="C:\Users\rec14003\Desktop\ofercontsim.csv" out=mydata1 dbms=csv replace;
+    getnames=yes;
+run;
+
+proc mixed data=mydata1;
+	class PID Day;
+	model MissedDose=ZQ7 ZTox3item/
+				 s;
+	random zq7/subject=pid;
+	repeated day / subject= pid type=ar(1);
+run;
+
+proc glimmix data=mydata1;
+	class PID Day;
+	model MissedDose=ZQ7 ZTox3item/
+				 s dist=normal;
+	random zq7/subject=pid;
+	random day / subject= pid type=ar(1) residual;
+	output out=igausout1 pred(blup ilink)=prediction resid(blup ilink)=r;
+run;
